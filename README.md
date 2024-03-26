@@ -1,4 +1,4 @@
-# Etude 1 - ParsingPartitions 
+# Etude 1 - ParsingPartitions - Blake Leahy
 
 My final working ParsingPartitions program is within TheEtude1.py, rather than etude1.py which is another approach. 
 
