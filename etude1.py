@@ -43,6 +43,43 @@
 #   else it must be an invalid line so append f"# INVALID: {line}" to output_lines
 #   if NOT scenario_valid, append # INVALID SCENARIO to output_lines
 
+# once a separator line is seen
+# line for each scenario, once nexrt separator, if invalid, add invalid before scenario added to output 
+
+# Store lines in scenario before adding them 
+# add invalid scenario first, otherwise all lines from scenario added to main output 
+# 
+
+# if comma tehn strip and split 
+
+# isPartition where if comma in line then 
+# if spcace in line then 
+# else 
+
+# current scenario list 
+# when it gets to a scenario, append 
+
+# sees input line, standardise it, add to scenario, print that scenario, onto next 
+# Keep adding lines into the scenario until you hit a separator, then reset scenario[] empty
+# Check if valid scenario, if not valid scenario, insert INVALID SCENARIO, 
+# otherwise, if valid scenario, print that 
+
+# Function for each isTyypeOfLine 
+
+# Boolean for was last last line empty, was last line separator, hasPartition? 
+# 
+
+# Once at separator line, if last line was not separatpr pr first 
+# If hasPartition then append 
+
+# if notEmpty insett INVALID SCENARIO THEN append 
+
+# reset scenario 
+
+# else if must be invalid if not isComment, isPartition, isBlank, isSeparator
+
+# use enum to
+
 import sys 
 
 def ParsePartitions(inputLines):
@@ -76,6 +113,7 @@ def ParsePartitions(inputLines):
             if inScenario and not hasValidPartition:
                 outputLines.append("# INVALID SCENARIO")
                 outputLines.append("--------")
+                #hasValidPartition = False
             elif inScenario:
                 outputLines.append("--------")
             hasValidPartition = False
@@ -96,15 +134,15 @@ def ParsePartitions(inputLines):
         if line.startswith('#'):
             outputLines.append(line)
             continue
-
+        
         # if any invalid partitions, mark invalid. Invalid can be by mixed separators, alphabetic chars, or special chars
         # if any valid partitions, standardise it.
         if isMixedSeparationInPartition(line) or any(c.isalpha() for c in line) or any(c in "!@#$%^&*()" for c in line):
             outputLines.append(f"# INVALID: {line}")
         else:
             try:
-                line_preprocessed = line.replace(', ', ' ').replace(',', ' ')
-                standardisedPartition = StandardisePartition(line_preprocessed)
+                linePreprocessed = line.replace(', ', ' ').replace(',', ' ')
+                standardisedPartition = StandardisePartition(linePreprocessed)
                 outputLines.append(standardisedPartition)
                 hasValidPartition = True
             except ValueError:
@@ -114,17 +152,23 @@ def ParsePartitions(inputLines):
     # Final scenario check 
     if inScenario and not hasValidPartition:
         outputLines.append("# INVALID SCENARIO")
-    elif inScenario:
-        outputLines.append("--------")
 
-    while outputLines and (not outputLines[-1] or outputLines[-1] == "# INVALID SCENARIO"):
-        outputLines.pop() 
+    #elif inScenario:
+        #outputLines.append("--------")
+        #inScenario = False
+    
+    # remove extra empty lines if any 
+    #outputLines = [line for line in outputLines if line]
+
+    # remove any empty lines or incorrect INVALID marks 
+    #while outputLines and (not outputLines[-1] or outputLines[-1] == "# INVALID SCENARIO"):
+        #outputLines.pop() 
 
     return outputLines
 
 
 if __name__ == "__main__":
-    input_lines = sys.stdin.readlines()
-    output = ParsePartitions(input_lines)
+    inputLines = sys.stdin.readlines()
+    output = ParsePartitions(inputLines)
     for line in output:
         print(line)
