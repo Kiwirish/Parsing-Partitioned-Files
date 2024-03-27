@@ -1,5 +1,5 @@
-# Separator line examples
-3 2 1
---------
-# And some more
-5 4 3 2 1
+# INVALID: ,1,2,3
+# INVALID: 1,02,3
+# INVALID: 1,,2,,3 
+20 1
+# INVALID: 1,2,3,

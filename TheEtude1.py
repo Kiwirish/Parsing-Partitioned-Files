@@ -64,7 +64,7 @@ def isPartition(line):
         return False
     elif ',,' in line:
         return False
-    elif line.endswith(','):
+    elif line.endswith(',') or line.startswith(','):
         return False
     parts = line.replace(',', ' ').split()
     return all(part.isdigit() and int(part) > 0 and str(int(part)) == part for part in parts)
