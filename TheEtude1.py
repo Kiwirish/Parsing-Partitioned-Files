@@ -62,7 +62,13 @@ def standardisePartition(partition):
 def isPartition(line):
     if isMixedSeparationInPartition(line):
         return False
-    return all(part.isdigit() for part in line.replace(',', ' ').split())
+    elif ',,' in line:
+        return False
+    elif line.endswith(','):
+        return False
+    parts = line.replace(',', ' ').split()
+    return all(part.isdigit() and int(part) > 0 and str(int(part)) == part for part in parts)
+    #return all(part.isdigit() for part in line.replace(',', ' ').split())
 
 
 def isMixedSeparationInPartition(line):
