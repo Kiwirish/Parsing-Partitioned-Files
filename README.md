@@ -1,4 +1,7 @@
-# Etude 1 - ParsingPartitions - Blake Leahy
+# Parsing Partition Files 
+
+### Parsing Partitions manages data partitions by reading partition data, analysing its structure and implementing efficient partitioning/standardisation algorithms to handle the data.
+
 
 My final working ParsingPartitions program is within TheEtude1.py, rather than etude1.py which is another approach. 
 
